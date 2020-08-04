@@ -76,10 +76,13 @@
 			L.geoJSON(data, {
 		//add a property - pointToLayer function to style things		
 				pointToLayer: function(feature, latlng) {
-					return new L.CircleMarker(latlong,
+					return new L.CircleMarker(latlng,
 					{	radius: 3,
 						fillOpacity: 1,
-						fillColor: 'black'});
+						fillColor: 'black',
+						color: 'white',
+						weight: .5,
+					});
 				}, 
 				onEachFeature: function(feature, layer){
 					layer.bindPopup("<strong>" + festure.properties.Artwork_Title + "</strong><br/>" + "Artist_Credit :" + feature.properties.Artist_Credit + "<br/>" + "Year_Installed: " + feature.properties.Year_Installed)
