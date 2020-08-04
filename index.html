@@ -77,17 +77,16 @@
 			return new L.CircleMarker(latlng, 
 				{	radius: 3,
 					fillOpacity: 1,
-					fillColor: agesColor,
+					fillColor: red,
 					color: 'orange',
 					weight: .5, 
 				});
 		},
 		onEachFeature: function(feature, layer){
-			layer.bindPopup("<strong>"+ feature.properties.Artwork_Title + "</strong><br/>" + "Artist Credit :" + feature.properties.Artist_Credit + "<br/>" + "Year Installed: " + feature.properties.Year_Installed)
+			layer.bindPopup("<strong>"+ feature.properties.Artwork_Title + "</strong><br/>" + "Artist Credit :" + feature.properties.Artist_Credit + "<br/>" + "Year Installed: " + feature.properties.Accreditation)
 		}
 			}).addTo(map);
 		});
-
 
 
 	</script>
