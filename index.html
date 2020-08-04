@@ -72,24 +72,26 @@
 
 		//call geojson layer
 		$.getJSON("Chicago_MuralRegistry.geojson",function(data){
-		//load geojson layer	
-			L.geoJSON(data, {
-		//add a property - pointToLayer function to style things		
-				pointToLayer: function(feature, latlng) {
-					return new L.CircleMarker(latlng,
-					{	radius: 3,
-						fillOpacity: 1,
-						fillColor: 'black',
-						color: 'white',
-						weight: .5,
-					});
-				}, 
-				onEachFeature: function(feature, layer){
-					layer.bindPopup("<strong>" + festure.properties.Artwork_Title + "</strong><br/>" + "Artist_Credit :" + feature.properties.Artist_Credit + "<br/>" + "Year_Installed: " + feature.properties.Year_Installed)
-				}
+	L.geoJSON(data, {
+		pointToLayer: function(feature, latlng) {
+			var conditionalColor
+			year = feature.properties.Year_Installed;
+				if ( year > 1999 ) conditionalColor = "red";
+				else if ( year < 2000 ) conditionalColor = "grey";
+				else conditionalColor = "grey";
+			return new L.CircleMarker(latlng, 
+				{	radius: 3,
+					fillOpacity: 1,
+					fillColor: agesColor,
+					color: 'orange',
+					weight: .5, 
+				});
+		},
+		onEachFeature: function(feature, layer){
+			layer.bindPopup("<strong>"+ feature.properties.Artwork_Title + "</strong><br/>" + "Artist Credit :" + feature.properties.Artist_Credit + "<br/>" + "Year Installed: " + feature.properties.Year_Installed)
+		}
 			}).addTo(map);
 		});
-
 
 
 
